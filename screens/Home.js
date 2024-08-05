@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { View, Text } from "react-native";
 import { popularRecipesApi } from "../api/recipes";
+import Header from "../components/Header";
+import Search from "../components/Search";
+import Cuisines from "../components/Cuisines";
 
-export default function Home() {
-    const [popularRecipes, setPopularRecipes] = useState([]);
-    useEffect(() => {
-      (async () => {
-        const response = await popularRecipesApi();
-        setPopularRecipes(response);
-      })();
-    }, []);
+export default function Home(props) {
+  const { navigation } = props;
+  const [popularRecipes, setPopularRecipes] = useState([]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await popularRecipesApi();
+  //     setPopularRecipes(response.results);
+  //   })();
+  // }, []);
 
   return (
-    <View className="flex-1 items-center justify-center bg-red-600">
-      <Text className="text-black">text </Text>
+    <View className="bg-white min-h-screen px-6 py-12">
+      <Header />
+      <Search />
+      <Cuisines />
     </View>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <View className="mb-3">
+    <View className="mb-3 px-6">
       <View>
         <Text className="text-black font-bold font-poppins text-2xl">
           Hello!

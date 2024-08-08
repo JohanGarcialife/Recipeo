@@ -1,64 +1,62 @@
 import React from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 
 export default function SliderPlates(props) {
-  const { cuisine } = props;
+  const { plates, navigation } = props;
 
   return (
     <View className="my-2">
       <ScrollView horizontal className="space-x-1 my-2">
-        {cuisine?.map((cuisine) => (
-          <View
-            className="items-center p-2"
-
-            //onPress={() => setCuisineSelect(cuisine.title)}
-          >
-            <Image
-              source={{
-                uri: `${cuisine.image}`,
-              }}
-              className="h-24 w-24 rounded-full z-10 shadow-2xl"
-            />
-            <View className="relative">
-              <View className="bg-gray4 rounded-lg w-36  -mt-10 items-center justify-between pt-14 pb-2 px-2">
-                <View className="w-full h-16 overflow-scroll">
-                  <Text
-                    className="text-black text-center"
-                    //onPress={() => setCuisineSelect(cuisine.title)}
-                  >
-                    {cuisine.title}
-                  </Text>
-                </View>
-                <View className="flex-row items-center justify-between w-full">
-                  <View>
-                    <Text
-                      className="text-gray2 text-xs"
-
-                      //onPress={() => setCuisineSelect(cuisine.title)}
-                    >
-                      Time
-                    </Text>
-                    <Text
-                      className="text-black text-xs"
-
-                      //onPress={() => setCuisineSelect(cuisine.title)}
-                    >
-                      15 min
-                    </Text>
-                  </View>
-                  {/* <Text
-                  className="text-black "
-
-                  //onPress={() => setCuisineSelect(cuisine.title)}
-                >
-                  text
-                </Text> */}
-                </View>
-              </View>
-            </View>
-          </View>
+        {plates?.map((plate) => (
+          <Recipe key={plate.id} plate={plate} navigation={navigation} />
         ))}
       </ScrollView>
+    </View>
+  );
+}
+
+function Recipe(props) {
+  const { plate, navigation } = props;
+  const { id } = plate;
+
+  const onNavigation = () => {
+    navigation.navigate("Recipe", {
+      id,
+    });
+  };
+
+  return (
+    <View
+      className="items-center p-2"
+      key={plate.key}
+      //onPress={() => setCuisineSelect(cuisine.title)}
+    >
+      <Image
+        source={{
+          uri: `${plate?.image}`,
+        }}
+        className="h-24 w-24 rounded-full z-10 shadow-2xl"
+      />
+      <View className="relative">
+        <View className="bg-gray4 rounded-lg w-36  -mt-10 items-center justify-between pt-14 pb-2 px-2">
+          <View className="w-full h-16 overflow-scroll">
+            <Text
+              className="text-black text-center"
+              //onPress={() => setCuisineSelect(cuisine.title)}
+            >
+              {plate?.title}
+            </Text>
+          </View>
+          <View className="flex-row mt-2 items-center justify-between w-full">
+            <TouchableOpacity
+              onPress={onNavigation}
+              className="bg-primary rounded-lg w-full py-2 items-center justify-center text-center"
+            >
+              <Text className="text-white text-sm">Details</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }

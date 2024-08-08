@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import SliderPlates from "./sliders/SliderPlates";
 import { cuisineRecipesApi } from "../api/recipes";
 
-export default function Cuisines() {
-  const [cuisineSelect, setCuisineSelect] = useState("African");
+export default function Cuisines(props) {
+  const { navigation } = props;
+  const [cuisineSelect, setCuisineSelect] = useState("American");
   const [cuisineList, setCuisineList] = useState([]);
 
   useEffect(() => {
@@ -94,9 +95,12 @@ export default function Cuisines() {
 
   return (
     <View className="my-2">
-      <ScrollView horizontal className="space-x-2 my-2">
+      <Text className="text-xl font-bold text-black px-6">Cuisines</Text>
+
+      <ScrollView horizontal className="space-x-2 my-2 px-2">
         {cuisinesArray?.map((cuisine) => (
           <View
+            key={cuisine.id}
             className={
               cuisineSelect === cuisine.title
                 ? "bg-primary px-4 py-2 flex-row items-center justify-center text-center rounded-lg"
@@ -117,7 +121,13 @@ export default function Cuisines() {
           </View>
         ))}
       </ScrollView>
-      <SliderPlates cuisine={cuisineList} />
+      <SliderPlates navigation={navigation} plates={cuisineList} />
+
+      {cuisineList.length < 20 ? null : (
+        <View className="px-6 flex-row items-center justify-end w-full">
+          <Text className="text-primary text-sm">See more</Text>
+        </View>
+      )}
     </View>
   );
 }

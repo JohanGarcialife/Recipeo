@@ -4,8 +4,8 @@ import { View, TextInput } from "react-native";
 
 export default function Search() {
   return (
-    <View className="flex flex-row justify-center space-x-5 my-2">
-      <View className="flex-row items-center space-x-1 border border-gray3 rounded-lg w-3/4 px-2">
+    <View className="flex flex-row  space-x-3 my-2 px-6">
+      <View className="flex-row items-center space-x-1 border border-gray3 rounded-lg w-[88%] px-2">
         <EvilIcons name="search" size={24} color="#a9a9a9" />
         <TextInput
           placeholder="Search recipe"

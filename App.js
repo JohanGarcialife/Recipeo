@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { View, Text } from "react-native";
 import { NativeWindStyleSheet } from "nativewind";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
+import Recipe from "./screens/Recipe";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +15,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>
   );

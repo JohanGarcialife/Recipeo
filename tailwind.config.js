@@ -26,9 +26,6 @@ module.exports = {
         gray3: "#a9a9a9",
         gray4: "#d9d9d9",
       },
-      fontFamily: {
-        poppins: ["poppins"],
-      },
     },
   },
   plugins: [],

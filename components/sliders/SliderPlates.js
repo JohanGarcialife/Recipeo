@@ -26,11 +26,7 @@ function Recipe(props) {
   };
 
   return (
-    <View
-      className="items-center p-2"
-      key={plate.key}
-      //onPress={() => setCuisineSelect(cuisine.title)}
-    >
+    <View className="items-center p-2" key={plate.key}>
       <Image
         source={{
           uri: `${plate?.image}`,
@@ -40,12 +36,7 @@ function Recipe(props) {
       <View className="relative">
         <View className="bg-gray4 rounded-lg w-36  -mt-10 items-center justify-between pt-14 pb-2 px-2">
           <View className="w-full h-16 overflow-scroll">
-            <Text
-              className="text-black text-center"
-              //onPress={() => setCuisineSelect(cuisine.title)}
-            >
-              {plate?.title}
-            </Text>
+            <Text className="text-black text-center">{plate?.title}</Text>
           </View>
           <View className="flex-row mt-2 items-center justify-between w-full">
             <TouchableOpacity

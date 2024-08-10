@@ -1,6 +1,5 @@
 import React, { useLayoutEffect } from "react";
 import { View, Text, ScrollView } from "react-native";
-
 import Header from "../components/Header";
 import Search from "../components/Search";
 import Cuisines from "../components/Cuisines";
@@ -23,11 +22,11 @@ export default function Home(props) {
       <ScrollView>
         <Header navigation={navigation} />
         <Search navigation={navigation} />
-        <Cuisines navigation={navigation} />
-        {/* <Popular navigation={navigation}/> */}
-        {/* <Diets navigation={navigation}/>
-        <Desserts navigation={navigation}/>
-        <Intolerances navigation={navigation}/> */}
+        {/* <Cuisines navigation={navigation} />
+        <Popular navigation={navigation} />
+        <Diets navigation={navigation} />
+        <Desserts navigation={navigation} />
+        <Intolerances navigation={navigation} /> */}
       </ScrollView>
     </View>
   );

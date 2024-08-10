@@ -29,8 +29,6 @@ export default function Recipe(props) {
   const spoonScore = recipe?.spoonacularScore / 10;
   const score = spoonScore.toFixed(1);
 
-  console.log(recipe?.analyzedInstructions[0].steps);
-
   return (
     <View className="bg-white min-h-screen  pt-12 pb-2">
       {/* Header */}
@@ -50,6 +48,7 @@ export default function Recipe(props) {
           <ImageBackground
             source={image}
             resizeMode="cover"
+            imageStyle={{ borderRadius: 16 }}
             className=" w-full h-48 rounded-full justify-between"
           >
             <View className="flex-row items-center justify-end p-3">
@@ -178,6 +177,11 @@ export default function Recipe(props) {
                         <Text className="text-gray ">{step.step}</Text>
                         {step?.length ? (
                           <View className="flex-row items-center space-x-2">
+                            <MaterialCommunityIcons
+                              name="timer-outline"
+                              size={24}
+                              color="#484848"
+                            />
                             <Text className="text-gray">
                               {step?.length?.number}
                             </Text>

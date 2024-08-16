@@ -22,11 +22,11 @@ export default function Home(props) {
       <ScrollView>
         <Header navigation={navigation} />
         <Search navigation={navigation} />
-        {/* <Cuisines navigation={navigation} />
+        <Cuisines navigation={navigation} />
         <Popular navigation={navigation} />
         <Diets navigation={navigation} />
         <Desserts navigation={navigation} />
-        <Intolerances navigation={navigation} /> */}
+        <Intolerances navigation={navigation} />
       </ScrollView>
     </View>
   );

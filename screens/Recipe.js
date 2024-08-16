@@ -1,22 +1,31 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text, ImageBackground, ScrollView } from "react-native";
-import { recipeInfoApi } from "../api/recipes";
+import { recipeInfoApi, similarRecipesApi } from "../api/recipes";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import SliderRecommend from "../components/sliders/SliderRecommend";
 
 export default function Recipe(props) {
   const { navigation, route } = props;
   const { params } = route;
   const { id } = params;
   const [recipe, setRecipe] = useState(null);
+  const [similarRecipe, setSimilarRecipe] = useState([]);
   const [showIngredients, setShowIngredients] = useState(true);
 
   useEffect(() => {
     (async () => {
       const response = await recipeInfoApi(id);
       setRecipe(response);
+    })();
+  }, [id]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await similarRecipesApi(id);
+      setSimilarRecipe(response);
     })();
   }, []);
 
@@ -31,7 +40,6 @@ export default function Recipe(props) {
 
   return (
     <View className="bg-white min-h-screen  pt-12 pb-2">
-      {/* Header */}
       <View className="px-6 flex-row justify-between items-center">
         <AntDesign
           name="arrowleft"
@@ -41,42 +49,41 @@ export default function Recipe(props) {
         />
         <Entypo name="dots-three-horizontal" size={24} color="black" />
       </View>
-      {/* Container */}
+
       <View className="pb-12 h-fit">
         <ScrollView className="px-6 rounded-full mt-5 ">
-          {/* Image */}
           <ImageBackground
             source={image}
             resizeMode="cover"
             imageStyle={{ borderRadius: 16 }}
-            className=" w-full h-48 rounded-full justify-between"
+            className=" w-full h-60 rounded-full justify-between"
           >
             <View className="flex-row items-center justify-end p-3">
               <View className="bg-[#ffe1b3] flex-row space-x-1 items-center py-1 px-2 rounded-full">
                 <FontAwesome name="star" size={14} color="#ffac30" />
-                <Text className="text-xs">{score} </Text>
+                <Text className="text-xs font-bold">{score} </Text>
               </View>
             </View>
             <View className="flex-row items-center justify-end p-3">
-              <View className="flex-row items-center space-x-2">
+              <View className="flex-row items-center bg-white rounded-full py-1 px-2 space-x-1">
                 <MaterialCommunityIcons
                   name="timer-outline"
-                  size={18}
-                  color="#797979"
+                  size={14}
+                  color="#ff9c00"
                 />
-                <Text className="text-gray2 text-sm ">
+                <Text className="text-secondary text-xs font-bold">
                   {recipe?.readyInMinutes}
                 </Text>
               </View>
             </View>
           </ImageBackground>
-          {/* Name */}
+
           <View className="mt-5">
             <Text className="font-bold text-lg text-black">
               {recipe?.title}
             </Text>
           </View>
-          {/* Tags */}
+
           <View className="mt-5 space-y-2">
             <View className="flex-row items-center space-x-2">
               <Text className="font-bold text-sm text-black">Cuisine:</Text>
@@ -109,7 +116,7 @@ export default function Recipe(props) {
               </ScrollView>
             </View>
           </View>
-          {/* Ingredients and steps */}
+
           <View className="flex-row space-x-2 items-center justify-between w-full mt-7 mb-5 px-6">
             <View
               className={
@@ -150,7 +157,7 @@ export default function Recipe(props) {
               </Text>
             </View>
           </View>
-          {/* Ingredients and steps list */}
+
           <View>
             {showIngredients ? (
               <>
@@ -173,8 +180,8 @@ export default function Recipe(props) {
                           {step?.number}
                         </Text>
                       </View>
-                      <View className="space-y-3 w-full">
-                        <Text className="text-gray ">{step.step}</Text>
+                      <View className="space-y-3 ">
+                        <Text className="text-gray pr-10">{step.step}</Text>
                         {step?.length ? (
                           <View className="flex-row items-center space-x-2">
                             <MaterialCommunityIcons
@@ -197,6 +204,16 @@ export default function Recipe(props) {
               </View>
             )}
           </View>
+
+          <Text className="mt-2  text-xl font-bold text-black">
+            Similar Recipes
+          </Text>
+
+          <SliderRecommend
+            title="Similar Recipes"
+            recipes={similarRecipe}
+            navigation={navigation}
+          />
         </ScrollView>
       </View>
     </View>

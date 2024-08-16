@@ -17,78 +17,102 @@ export default function Cuisines(props) {
 
   const cuisinesArray = [
     {
+      id:1,
       title: "African",
     },
     {
+    id:2,
       title: "Asian",
     },
     {
+      id:3,
       title: "American",
     },
     {
+      id:4,
       title: "British",
     },
     {
+      id:5,
       title: "Cajun",
     },
     {
+      id:6,
       title: "Caribbean",
     },
     {
+      id:7,
       title: "Chinese",
     },
     {
+      id:8,
       title: "Eastern European",
     },
     {
+      id:9,
       title: "European",
     },
     {
+      id:10,
       title: "French",
     },
     {
+      id:11,
       title: "German",
     },
-    {
+    {id:12,
       title: "Indian",
     },
     {
+      id:13,
       title: "Irish",
     },
     {
+      id:14,
       title: "Italian",
     },
     {
+      id:15,
       title: "Japanese",
     },
     {
+      id:16,
       title: "Jewish",
     },
     {
+      id:17,
       title: "Korean",
     },
     {
+      id:18,
       title: "Latin American",
     },
     {
+      id:19,
       title: "Mediterranean",
     },
     {
+      id:20,
       title: "Mexican",
     },
     {
+      id:21,
       title: "Middle Eastern",
     },
     {
+      id:22,
       title: "Southern",
     },
     {
+      id:23,
       title: "Spanish",
     },
     {
+      id:24,
       title: "Thai",
     },
     {
+      id:25,
       title: "Vietnamese",
     },
   ];

@@ -1,11 +1,19 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text, ImageBackground, ScrollView } from "react-native";
 import { recipeInfoApi, similarRecipesApi } from "../api/recipes";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import SliderRecommend from "../components/sliders/SliderRecommend";
+
+// const adUnitId = TestIds.BANNER;
+const adUnitId = "ca-app-pub-6950210574005139~5447799301";
 
 export default function Recipe(props) {
   const { navigation, route } = props;
@@ -105,6 +113,7 @@ export default function Recipe(props) {
                 ))}
               </ScrollView>
             </View>
+
             <View className="flex-row items-center space-x-2">
               <Text className="font-bold text-sm text-black">Diet:</Text>
               <ScrollView horizontal className="space-x-2">
@@ -157,7 +166,11 @@ export default function Recipe(props) {
               </Text>
             </View>
           </View>
-
+          {/* <BannerAd
+            unitId={adUnitId}
+            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+            requestOptions={{ requestNonPersonalizedAdsOnly: true }}
+          /> */}
           <View>
             {showIngredients ? (
               <>
@@ -204,7 +217,11 @@ export default function Recipe(props) {
               </View>
             )}
           </View>
-
+          {/* <BannerAd
+            unitId={adUnitId}
+            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+            requestOptions={{ requestNonPersonalizedAdsOnly: true }}
+          /> */}
           <Text className="mt-2  text-xl font-bold text-black">
             Similar Recipes
           </Text>

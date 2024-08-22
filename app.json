@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "TasyTap",
+    "name": "TastyTap",
     "slug": "TastyTap",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
@@ -29,5 +29,10 @@
         "projectId": "f70972c4-dd51-4473-8b38-fe4ab72cbce7"
       }
     }
-  }
+    
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-6950210574005139~5447799301",
+    "ios_app_id": "ca-app-pub-6950210574005139~5447799301"
+  } 
 }

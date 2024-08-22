@@ -5,7 +5,6 @@ import { Formik } from "formik";
 
 export default function Search(props) {
   const { navigation } = props;
-  
 
   const goSearch = (values) => {
     const query = values.query;
@@ -44,9 +43,9 @@ export default function Search(props) {
           </View>
         )}
       </Formik>
-      <View className="bg-primary h-10 w-10 rounded-lg text-bold p-2 flex items-center justify-center">
+      {/* <View className="bg-primary h-10 w-10 rounded-lg text-bold p-2 flex items-center justify-center">
         <Fontisto name="equalizer" size={20} color="white" />
-      </View>
+      </View> */}
     </View>
   );
 }

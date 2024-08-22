@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
 import Recipe from "./screens/Recipe";
 import Search from "./screens/Search";
+import SeeMore from "./screens/SeeMore";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Recipe" component={Recipe} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="SeeMore" component={SeeMore} />
       </Stack.Navigator>
     </NavigationContainer>
   );

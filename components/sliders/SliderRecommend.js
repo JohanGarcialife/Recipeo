@@ -44,9 +44,9 @@ function Card(props) {
       </View>
       <View className="bg-slate-100 w-72 shadow-sm  rounded-xl px-2 pb-2 pt-14 -mt-10 justify-start items-start h-36">
         <Text className="text-black font-bold">{recipe?.title}</Text>
-        {/* {title === "Popular Recipes" && (
+        {title === "Popular Recipes" && (
           <AirbnbRating defaultRating={5} size={20} showRating={false} />
-        )} */}
+        )}
       </View>
     </TouchableOpacity>
   );

@@ -7,6 +7,7 @@ export default function Diets(props) {
   const { navigation } = props;
   const [dietSelect, setDietSelect] = useState("Gluten Free");
   const [dietList, setDietList] = useState([]);
+  const [number, setNumber] = useState(20);
 
   const dietsArray = [
     {
@@ -53,10 +54,16 @@ export default function Diets(props) {
 
   useEffect(() => {
     (async () => {
-      const response = await dietRecipesApi(dietSelect);
+      const response = await dietRecipesApi(dietSelect, number);
       setDietList(response.results);
     })();
   }, [dietSelect]);
+
+  const onNavigation = () => {
+    navigation.navigate("SeeMore", {
+      dietSelect,
+    });
+  };
 
   return (
     <View className="my-2">
@@ -86,9 +93,11 @@ export default function Diets(props) {
         ))}
       </ScrollView>
       <SliderPlates plates={dietList} navigation={navigation} />
-      {dietList.length < 20 ? null : (
+      {dietList?.length < 20 ? null : (
         <View className="px-6 flex-row items-center justify-end w-full">
-          <Text className="text-primary text-sm">See more</Text>
+          <Text onPress={onNavigation} className="text-primary text-sm">
+            See more
+          </Text>
         </View>
       )}
     </View>

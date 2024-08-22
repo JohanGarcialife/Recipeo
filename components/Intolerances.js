@@ -7,6 +7,7 @@ export default function Intolerances(props) {
   const { navigation } = props;
   const [intoleranceSelect, setIntoleranceSelect] = useState("Dairy");
   const [intoleranceList, setIntoleranceList] = useState([]);
+  const [number, setNumber] = useState(20);
 
   const intolerancesArray = [
     {
@@ -61,10 +62,16 @@ export default function Intolerances(props) {
 
   useEffect(() => {
     (async () => {
-      const response = await intolerancesRecipesApi(intoleranceSelect);
+      const response = await intolerancesRecipesApi(intoleranceSelect, number);
       setIntoleranceList(response.results);
     })();
   }, [intoleranceSelect]);
+
+  const onNavigation = () => {
+    navigation.navigate("SeeMore", {
+      intoleranceSelect,
+    });
+  };
 
   return (
     <View className="my-2">
@@ -94,9 +101,11 @@ export default function Intolerances(props) {
         ))}
       </ScrollView>
       <SliderPlates plates={intoleranceList} navigation={navigation} />
-      {intoleranceList.length < 20 ? null : (
+      {intoleranceList?.length < 20 ? null : (
         <View className="px-6 flex-row items-center justify-end w-full">
-          <Text className="text-primary text-sm">See more</Text>
+          <Text onPress={onNavigation} className="text-primary text-sm">
+            See more
+          </Text>
         </View>
       )}
     </View>

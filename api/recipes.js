@@ -63,9 +63,9 @@ export async function popularRecipesApi() {
   }
 }
 
-export async function dessertRecipesApi() {
+export async function dessertRecipesApi(nu) {
   try {
-    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=10&type=dessert`;
+    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=${nu}&type=dessert`;
     const params = {
       headers: {
         Accept: "*/*",
@@ -79,9 +79,9 @@ export async function dessertRecipesApi() {
   }
 }
 
-export async function cuisineRecipesApi(cu) {
+export async function cuisineRecipesApi(cu, nu) {
   try {
-    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=20&cuisine=${cu}`;
+    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=${nu}&cuisine=${cu}`;
     const params = {
       headers: {
         Accept: "*/*",
@@ -95,9 +95,9 @@ export async function cuisineRecipesApi(cu) {
   }
 }
 
-export async function dietRecipesApi(di) {
+export async function dietRecipesApi(di, nu) {
   try {
-    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=20&diet=${di}`;
+    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=${nu}&diet=${di}`;
     const params = {
       headers: {
         Accept: "*/*",
@@ -111,9 +111,9 @@ export async function dietRecipesApi(di) {
   }
 }
 
-export async function intolerancesRecipesApi(int) {
+export async function intolerancesRecipesApi(int, nu) {
   try {
-    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=20&intolerances=${int}`;
+    const url = `${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&number=${nu}&intolerances=${int}`;
     const params = {
       headers: {
         Accept: "*/*",

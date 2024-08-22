@@ -4,14 +4,20 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
   ScrollView,
-  FlatList,
 } from "react-native";
 import { AntDesign, EvilIcons, Fontisto } from "@expo/vector-icons";
 import { Formik } from "formik";
 import { searchRecipesApi } from "../api/recipes";
-import { LinearGradient } from "expo-linear-gradient";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
+import RecipeGrid from "../components/RecipeGrid";
+
+// const adUnitId = TestIds.BANNER;
+const adUnitId = "ca-app-pub-6950210574005139~5447799301";
 
 export default function Search(props) {
   const { navigation, route } = props;
@@ -49,13 +55,13 @@ export default function Search(props) {
           />
         </View>
 
-        <View className="flex flex-row  space-x-3 my-2  mb-5">
+        <View className="flex flex-row space-x-2 my-2 max-w-screen mb-5">
           <Formik
             initialValues={{ query: "" }}
             onSubmit={(values) => newSearch(values)}
           >
-            {({ handleChange, handleBlur, handleSubmit, values }) => (
-              <View className="flex-row items-center justify-between space-x-1 border border-gray3 rounded-lg w-[88%] pl-2">
+            {({ handleChange, handleSubmit, values }) => (
+              <View className="flex-row items-center justify-between space-x-1 border border-spacing-0 border-gray3 rounded-lg w-[85%] pl-2">
                 <View className="flex-row items-center space-x-1">
                   <EvilIcons name="search" size={24} color="#a9a9a9" />
                   <TextInput
@@ -78,57 +84,21 @@ export default function Search(props) {
               </View>
             )}
           </Formik>
-          <View className="bg-primary h-10 w-10 rounded-lg text-bold p-2 flex items-center justify-center">
+          {/* <View className="bg-primary h-10 w-10 rounded-lg text-bold p-2 flex items-center justify-center">
             <Fontisto name="equalizer" size={20} color="white" />
-          </View>
+          </View> */}
         </View>
-
-        <View className="">
-          <FlatList
-            data={search}
-            numColumns={2}
-            className="w-full ml-2"
-            renderItem={({ item }) => (
-              <Recipe key={item.key} recipe={item} navigation={navigation} />
-            )}
-          />
+        {/* <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{ requestNonPersonalizedAdsOnly: true }}
+        /> */}
+        <View className="space-y-4">
+          {search?.map((item) => (
+            <RecipeGrid key={item.id} recipe={item} navigation={navigation} />
+          ))}
         </View>
       </ScrollView>
     </View>
-  );
-}
-function Recipe(props) {
-  const { recipe, navigation } = props;
-  const { id } = recipe;
-
-  const onNavigation = () => {
-    navigation.navigate("Recipe", {
-      id,
-    });
-  };
-
-  return (
-    <TouchableOpacity onPress={onNavigation}>
-      <ImageBackground
-        key={recipe.id}
-        source={{ uri: recipe.image }}
-        resizeMode="cover"
-        imageStyle={{ borderRadius: 16 }}
-        className="h-48 rounded-full"
-        style={{
-          aspectRatio: 1,
-          margin: 8,
-        }}
-      >
-        <LinearGradient
-          start={{ x: 0, y: 1 }}
-          end={{ x: 0, y: 0 }}
-          colors={["#000", "transparent"]}
-          className="rounded-2xl h-full justify-end p-3"
-        >
-          <Text className="font-bold text-white">{recipe?.title}</Text>
-        </LinearGradient>
-      </ImageBackground>
-    </TouchableOpacity>
   );
 }
